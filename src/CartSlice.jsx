@@ -9,6 +9,7 @@ export const CartSlice = createSlice({
         addItem: (state, action) => {
             const { name, image, cost } = action.payload;
             const existingItem = state.items.find(item => item.name === name);
+            
             if (existingItem) {
                 existingItem.quantity++;
             } else {
@@ -16,19 +17,17 @@ export const CartSlice = createSlice({
             }
         },
         removeItem: (state, action) => {
-            // const { name, image, cost } = action.payload;
-            const existingItem = state.items = state.items.filter(item => item.name !== action.payload);
-            console.log(state.items)
-            console.log(existingItem)
-            if (existingItem) {
-                existingItem.quantity--;
-            }
+            const { name, image, cost } = action.payload;
+            const existingItem = state.items = state.items.filter(item => item.name !== name);
+            
+            console.log(JSON.stringify(state.items.filter(item => item.name !== name)));
         },
         updateQuantity: (state, action) => {
             const { name, quantity } = action.payload;
             console.log(name)
             console.log(action.payload)
             const itemToUpdate = state.items.find(item => item.name === name);
+            console.log(itemToUpdate.quantity)
             if (itemToUpdate) {
                 itemToUpdate.quantity = quantity;
             }
