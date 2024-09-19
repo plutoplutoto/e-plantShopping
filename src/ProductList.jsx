@@ -291,7 +291,7 @@ function ProductList() {
                                         <div className="product-description">{plant.description}</div>
                                         <div className="product-cost">{plant.cost}</div>
                                         {/*Similarly like the above plant.name show other details like description and cost*/}
-                                        <button className="product-button" onClick={() => handleAddToCart(plant)}>Add{addedToCart[plant.name]?"ed":''} to Cart</button>
+                                        <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} onClick={() => handleAddToCart(plant)}>Add{addedToCart[plant.name]?"ed":''} to Cart</button>
                                     </div>
                                 ))}
                             </div>
