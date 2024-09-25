@@ -16,6 +16,7 @@ function ProductList() {
             ...prevState,
             [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
         }));
+        console.log(addedToCart)
     };
     const handleRemoveFromCart = (product) => {
         setAddedToCart((prevState) => ({
