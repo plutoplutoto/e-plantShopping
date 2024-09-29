@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CartSlice, { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
@@ -20,7 +20,7 @@ const CartItem = ({ onContinueShopping }) => {
     };
 
     const handleContinueShopping = (e) => {
-
+        onContinueShopping(e)
     };
 
 
