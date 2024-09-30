@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import CartSlice, { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping, setTotalQuantity }) => {
+const CartItem = ({ onContinueShopping, setTotalQuantity, handleRemoveFromCart }) => {
     const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
 
@@ -29,24 +29,20 @@ const CartItem = ({ onContinueShopping, setTotalQuantity }) => {
 
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
-        // console.log("lalala")
-        // calculateTotalQuantity()
-        // console.log(calculateTotalQuantity())
-        // setTotalQuantity(calculateTotalQuantity())
+    
     };
 
     const handleDecrement = (item) => {
         if (item.quantity > 1) {
             dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
         }
-        // setTotalQuantity(calculateTotalQuantity())
     };
 
     const handleRemove = (item) => {
         if (item.name && item.quantity > 0) {
             dispatch(removeItem(item));
+            handleRemoveFromCart(item)
         }
-        // setTotalQuantity(calculateTotalQuantity())
     };
     const calculateTotalQuantity = () => {
         let totalQuantity = 0;
@@ -81,7 +77,7 @@ const CartItem = ({ onContinueShopping, setTotalQuantity }) => {
                                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
                             </div>
                             <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
-                            <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
+                            <button className="cart-item-delete" onClick={() => handleRemove(item) }>Delete</button>
                         </div>
                     </div>
                 ))}

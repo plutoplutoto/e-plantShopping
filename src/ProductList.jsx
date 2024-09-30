@@ -29,7 +29,7 @@ function ProductList() {
     const handleRemoveFromCart = (product) => {
         setAddedToCart((prevState) => ({
             ...prevState,
-            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+            [product.name]: false, // Set the product name as key and value as true to indicate it's added to cart
         }));
     };
     const plantsArray = [
@@ -326,7 +326,8 @@ function ProductList() {
 
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} setTotalQuantity={setTotalQuantity} />
+                // <CartItem onContinueShopping={handleContinueShopping} setTotalQuantity={setTotalQuantity} />
+                <CartItem onContinueShopping={handleContinueShopping} setTotalQuantity={setTotalQuantity} handleRemoveFromCart={handleRemoveFromCart}/>
             )}
         </div>
     );
